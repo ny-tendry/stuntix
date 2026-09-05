@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Stuntix — Prédiction</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body class="prediction-page prediction-v2-page section-page">
+    <div class="app-shell content-page">
+      <div class="section-map-backdrop" aria-hidden="true">
+        <div id="backgroundWorldMap"></div>
+      </div>
+      <div class="section-map-shade" aria-hidden="true"></div>
+      <div class="water-texture" aria-hidden="true"></div>
+
+      <button
+        class="mobile-toggle glass"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="sidebar-scrim"></div>
+
+      <aside class="sidebar glass">
+        <nav class="nav" aria-label="Navigation principale">
+          <a
+            class="nav-link"
+            href="index.html"
+            title="Carte mondiale"
+            aria-label="Carte mondiale"
+            ><i data-lucide="earth"></i
+          ></a>
+          <a
+            class="nav-link"
+            href="#"
+            title="Pays & régions"
+            aria-label="Pays & régions"
+            data-demo-link
+            ><i data-lucide="map-pinned"></i
+          ></a>
+          <a
+            class="nav-link"
+            href="#"
+            title="Populations"
+            aria-label="Populations"
+            data-demo-link
+            ><i data-lucide="users-round"></i
+          ></a>
+          <a
+            class="nav-link"
+            href="#"
+            title="Alertes & risques"
+            aria-label="Alertes & risques"
+            data-demo-link
+            ><i data-lucide="triangle-alert"></i
+          ></a>
+          <a
+            class="nav-link"
+            href="#"
+            title="Prévisions"
+            aria-label="Prévisions"
+            data-demo-link
+            ><i data-lucide="chart-spline"></i
+          ></a>
+          <a
+            class="nav-link active"
+            href="prediction.html"
+            title="Prédiction"
+            aria-label="Prédiction"
+            aria-current="page"
+            ><i data-lucide="brain-circuit"></i
+          ></a>
+        </nav>
+      </aside>
+
+      <main class="content-frame glass prediction-frame prediction-v2-frame">
+        <header class="prediction-v2-header">
+          <div class="prediction-v2-titleblock">
+            <div class="eyebrow">Prédiction du risque de stunting</div>
+            <p class="page-subtitle">
+              Sélectionnez un pays et une année, ajustez les indicateurs et
+              explorez l’estimation du modèle.
+            </p>
+          </div>
+        </header>
+
+        <section class="prediction-v3-workspace">
+          <form
+            id="predictionForm"
+            class="prediction-v2-card scenario-card prediction-v3-scenario"
+          >
+            <div class="v2-card-head">
+              <div class="v2-card-title">
+                <span class="v2-head-icon"
+                  ><i data-lucide="sliders-horizontal"></i
+                ></span>
+                <div>
+                  <strong>Scénario</strong
+                  ><small>Variables d’entrée du modèle</small>
+                </div>
+              </div>
+              <span class="v2-step">01</span>
+            </div>
+
+            <div class="scenario-context">
+              <div class="v2-field">
+                <label for="country">Pays</label>
+                <div class="select-shell">
+                  <select id="country" required>
+                    <option value="">Chargement des pays...</option></select
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 10 5 5 5-5"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="v2-field year-field">
+                <label for="year">Année</label>
+                <div class="select-shell">
+                  <select id="year" required></select
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 10 5 5 5-5"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="v2-section-label">
+              <span>Indicateurs</span><small>6 variables</small>
+            </div>
+            <div class="v3-metrics-list">
+              <label class="v3-metric" for="gdp"
+                ><span class="v2-metric-icon"
+                  ><i data-lucide="chart-no-axes-column-increasing"></i></span
+                ><span class="v2-metric-copy"
+                  ><span>PIB / habitant</span><small>USD</small></span
+                ><input
+                  id="gdp"
+                  type="number"
+                  value="880.0"
+                  step="0.1"
+                  min="0"
+                  required
+              /></label>
+              <label class="v3-metric" for="water"
+                ><span class="v2-metric-icon"
+                  ><i data-lucide="droplets"></i></span
+                ><span class="v2-metric-copy"
+                  ><span>Accès à l’eau</span><small>%</small></span
+                ><input
+                  id="water"
+                  type="number"
+                  value="99.0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  required
+              /></label>
+              <label class="v3-metric" for="mortality"
+                ><span class="v2-metric-icon"
+                  ><i data-lucide="heart-pulse"></i></span
+                ><span class="v2-metric-copy"
+                  ><span>Mortalité &lt; 5 ans</span
+                  ><small>pour 1 000 naissances</small></span
+                ><input
+                  id="mortality"
+                  type="number"
+                  value="10.0"
+                  step="0.1"
+                  min="0"
+                  required
+              /></label>
+              <label class="v3-metric" for="health"
+                ><span class="v2-metric-icon"
+                  ><i data-lucide="hospital"></i></span
+                ><span class="v2-metric-copy"
+                  ><span>Dépenses santé</span><small>% du PIB</small></span
+                ><input
+                  id="health"
+                  type="number"
+                  value="20.4"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  required
+              /></label>
+              <label class="v3-metric" for="undernourishment"
+                ><span class="v2-metric-icon"><i data-lucide="wheat"></i></span
+                ><span class="v2-metric-copy"
+                  ><span>Sous-alimentation</span
+                  ><small>% de la population</small></span
+                ><input
+                  id="undernourishment"
+                  type="number"
+                  value="50.5"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  required
+              /></label>
+              <label class="v3-metric" for="urban"
+                ><span class="v2-metric-icon"
+                  ><i data-lucide="building-2"></i></span
+                ><span class="v2-metric-copy"
+                  ><span>Population urbaine</span><small>%</small></span
+                ><input
+                  id="urban"
+                  type="number"
+                  value="20.0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  required
+              /></label>
+            </div>
+
+            <div class="scenario-action-zone v3-action-zone">
+              <div class="scenario-hint">
+                <i data-lucide="info"></i
+                ><span
+                  >Modifiez uniquement les hypothèses que vous souhaitez
+                  tester.</span
+                >
+              </div>
+              <button
+                id="predictBtn"
+                class="predict-btn v2-predict-btn"
+                type="submit"
+              >
+                <i class="predict-btn-icon" data-lucide="sparkles"></i
+                ><span class="predict-btn-label">Lancer la prédiction</span
+                ><span class="button-spinner" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+
+          <div class="prediction-v3-insights">
+            <div id="predictionWelcome" class="prediction-empty-state">
+              <div class="prediction-empty-icon">
+                <i data-lucide="scan-search"></i>
+              </div>
+              <strong id="predictionWelcomeTitle"
+                >Prêt pour une estimation</strong
+              >
+              <p id="predictionWelcomeText">
+                Configurez votre scénario puis lancez la prédiction pour
+                afficher le résultat et l’explication du modèle.
+              </p>
+              <div class="prediction-empty-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div
+              id="predictionLoading"
+              class="prediction-loading-state"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              <span class="prediction-loader-orbit" aria-hidden="true"
+                ><i data-lucide="brain-circuit"></i
+              ></span>
+              <strong>Analyse du scénario</strong>
+              <p>
+                Le modèle calcule l’estimation et les contributions des
+                facteurs.
+              </p>
+              <div class="loading-bars" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div id="predictionOutput" class="prediction-output" hidden>
+              <section class="prediction-v2-card result-v3-card">
+                <div class="v2-card-head result-head">
+                  <div class="v2-card-title">
+                    <span class="v2-head-icon"
+                      ><i data-lucide="target"></i
+                    ></span>
+                    <div>
+                      <strong>Résultat</strong
+                      ><small id="scenarioLabel">En attente</small>
+                    </div>
+                  </div>
+                  <span class="v2-step">02</span>
+                </div>
+                <div class="result-polished-body">
+                  <div class="result-polished-summary">
+                    <span class="result-polished-label"
+                      >Taux de stunting prédit</span
+                    >
+                    <strong id="predictionValue" class="result-polished-value"
+                      >—</strong
+                    >
+                    <div
+                      id="riskPill"
+                      class="risk-pill v2-risk-pill result-polished-risk"
+                    >
+                      <span class="risk-dot"></span
+                      ><span id="riskLabel">Risque</span>
+                    </div>
+                    <div
+                      class="result-polished-context"
+                      aria-label="Contexte de la prédiction"
+                    >
+                      <span id="resultCountry">—</span><i aria-hidden="true"></i
+                      ><span id="resultYear">—</span>
+                    </div>
+                  </div>
+
+                  <div class="result-polished-recommendations">
+                    <div class="result-polished-recommendations-head">
+                      <span class="result-polished-rec-icon" aria-hidden="true"
+                        ><i data-lucide="lightbulb"></i
+                      ></span>
+                      <div>
+                        <strong>Recommandations</strong
+                        ><small>Actions à privilégier selon le modèle</small>
+                      </div>
+                    </div>
+                    <div
+                      id="recommendationsList"
+                      class="result-polished-recommendations-list"
+                      aria-live="polite"
+                    ></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="prediction-v2-card xai-v3-card">
+                <div class="v2-card-head">
+                  <div class="v2-card-title">
+                    <span class="v2-head-icon"
+                      ><i data-lucide="brain-circuit"></i
+                    ></span>
+                    <div>
+                      <strong>Explication du modèle</strong
+                      ><small
+                        >Comprendre ce qui pousse l’estimation vers le haut ou
+                        le bas</small
+                      >
+                    </div>
+                  </div>
+                  <span class="xai-v2-chip">SHAP</span>
+                </div>
+                <div class="xai-clean-body">
+                  <div class="xai-clean-toolbar">
+                    <div>
+                      <strong>Contribution des facteurs</strong
+                      ><small
+                        >Impact de chaque variable sur l’estimation, en points
+                        de pourcentage</small
+                      >
+                    </div>
+                    <div
+                      class="xai-clean-legend"
+                      aria-label="Légende des impacts"
+                    >
+                      <span><i class="legend-down"></i>Diminue</span
+                      ><span><i class="legend-up"></i>Augmente</span>
+                    </div>
+                  </div>
+                  <div
+                    id="impactList"
+                    class="impact-list xai-clean-impact-list"
+                    aria-live="polite"
+                  ></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-maps@1.1.0/world.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/background-map.js"></script>
+    <script src="assets/js/shared.js"></script>
+    <script>
+      const yearSelectElement = document.getElementById("year");
+      if (yearSelectElement) {
+        for (let year = 2001; year <= 2030; year++) {
+          const option = document.createElement("option");
+          option.value = String(year);
+          option.textContent = String(year);
+          if (year === 2027) option.selected = true;
+          yearSelectElement.appendChild(option);
+        }
+      }
+    </script>
+    <script src="assets/js/prediction.js"></script>
+  </body>
+</html>
