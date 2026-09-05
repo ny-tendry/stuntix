@@ -18,6 +18,17 @@ a{color:inherit;text-decoration:none}
 .landing-glow{position:absolute;z-index:-3;border-radius:50%;filter:blur(18px);pointer-events:none}
 .landing-glow-a{width:52vw;height:52vw;left:24vw;top:-30vw;background:radial-gradient(circle,rgba(49,130,211,.18),transparent 68%)}
 .landing-glow-b{width:46vw;height:46vw;left:28vw;bottom:-32vw;background:radial-gradient(circle,rgba(36,114,169,.22),transparent 68%)}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .hero{position:relative;z-index:8;width:min(650px,calc(100vw - 36px));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 20px;transform:translateY(-1.5vh)}
 .hero-logo-wrap{position:relative;width:min(310px,72vw);height:112px;display:grid;place-items:center;margin:0 0 18px}

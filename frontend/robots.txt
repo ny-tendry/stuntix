@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stuntix.nytendry2.workers.dev/sitemap.xml
