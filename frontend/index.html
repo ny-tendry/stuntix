@@ -1,222 +1,56 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Stuntix — Carte mondiale</title>
-    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <link rel="stylesheet" href="assets/css/styles.css" />
-  </head>
-  <body class="map-page">
-    <div class="app-shell map-stage">
-      <div class="water-texture" aria-hidden="true"></div>
-      <div class="map-vignette" aria-hidden="true"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Stuntix — plateforme analytique pour le suivi et la prédiction des risques de stunting chez les enfants de 0 à 5 ans.">
+  <title>Stuntix — Analyse du risque de stunting</title>
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body class="landing-page">
+  <main class="landing-shell">
+    <div class="landing-noise" aria-hidden="true"></div>
+    <div class="landing-grid" aria-hidden="true"></div>
+    <div class="landing-glow landing-glow-a" aria-hidden="true"></div>
+    <div class="landing-glow landing-glow-b" aria-hidden="true"></div>
 
-      <button
-        class="mobile-toggle glass"
-        type="button"
-        aria-label="Ouvrir le menu"
-        aria-expanded="false"
-      >
-        <i data-lucide="menu"></i>
-      </button>
-      <div class="sidebar-scrim"></div>
+    <div class="orb orb-a" aria-hidden="true"><span></span></div>
+    <div class="orb orb-b" aria-hidden="true"><span></span></div>
+    <div class="orb orb-c" aria-hidden="true"><span></span></div>
+    <div class="orb orb-d" aria-hidden="true"><span></span></div>
 
-      <aside class="sidebar glass">
-        <nav class="nav" aria-label="Navigation principale">
-          <a
-            class="nav-link active"
-            href="index.html"
-            title="Carte mondiale"
-            aria-label="Carte mondiale"
-            aria-current="page"
-            ><i data-lucide="earth"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Pays & régions"
-            aria-label="Pays & régions"
-            data-demo-link
-            ><i data-lucide="map-pinned"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Populations"
-            aria-label="Populations"
-            data-demo-link
-            ><i data-lucide="users-round"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Alertes & risques"
-            aria-label="Alertes & risques"
-            data-demo-link
-            ><i data-lucide="triangle-alert"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Prévisions"
-            aria-label="Prévisions"
-            data-demo-link
-            ><i data-lucide="chart-spline"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="prediction.html"
-            title="Prédiction"
-            aria-label="Prédiction"
-            ><i data-lucide="brain-circuit"></i
-          ></a>
-        </nav>
-      </aside>
+    <div class="glass-arc glass-arc-left" aria-hidden="true"></div>
+    <div class="glass-arc glass-arc-right" aria-hidden="true"></div>
 
-      <div
-        id="worldMap"
-        aria-label="Carte mondiale des niveaux de risque"
-      ></div>
-
-      <div
-        id="mapLoading"
-        class="map-loading glass"
-        role="status"
-        aria-live="polite"
-      >
-        <span class="micro-spinner" aria-hidden="true"></span>
-        <span>Chargement de la carte</span>
+    <section class="hero" aria-label="Accueil Stuntix">
+      <div class="hero-logo-wrap">
+        <span class="logo-aura" aria-hidden="true"></span>
+        <img class="hero-logo" src="assets/img/stuntix-logo.png" alt="Stuntix">
       </div>
 
-      <div class="search-wrap">
-        <div class="search-box glass">
-          <i data-lucide="search"></i>
-          <input
-            id="countrySearch"
-            type="search"
-            placeholder="Rechercher un pays..."
-            aria-label="Rechercher un pays"
-            autocomplete="off"
-          />
-        </div>
-        <div
-          id="searchSuggestions"
-          class="search-suggestions glass"
-          role="listbox"
-          aria-label="Suggestions de pays"
-        ></div>
-      </div>
+      <p class="hero-description">
+        Plateforme d’analyse mondiale pour visualiser, comprendre et prédire les risques de stunting chez les enfants de 0 à 5 ans.
+      </p>
 
-      <div class="map-legend glass" aria-label="Filtrer les niveaux de risque">
-        <button
-          class="legend-item active"
-          type="button"
-          data-cluster-filter="2"
-          aria-pressed="true"
-        >
-          <span
-            class="legend-dot"
-            style="background: #67b66d; color: #67b66d"
-          ></span
-          >Faible
-        </button>
-        <button
-          class="legend-item active"
-          type="button"
-          data-cluster-filter="1"
-          aria-pressed="true"
-        >
-          <span
-            class="legend-dot"
-            style="background: #f2ad2d; color: #f2ad2d"
-          ></span
-          >Modéré
-        </button>
-        <button
-          class="legend-item active"
-          type="button"
-          data-cluster-filter="0"
-          aria-pressed="true"
-        >
-          <span
-            class="legend-dot"
-            style="background: #ef4f43; color: #ef4f43"
-          ></span
-          >Élevé
-        </button>
-      </div>
+      <div class="hero-actions">
+        <a class="primary-cta" href="carte.html">
+          <span>Explorer la plateforme</span>
+          <i data-lucide="arrow-right" aria-hidden="true"></i>
+        </a>
 
-      <div class="map-tools">
-        <button
-          id="resetMap"
-          class="tool-btn glass"
-          type="button"
-          title="Recentrer"
-          aria-label="Recentrer la carte"
-        >
-          <i data-lucide="locate-fixed"></i>
-        </button>
-        <div class="zoom-stack glass">
-          <button
-            id="zoomIn"
-            class="tool-btn"
-            type="button"
-            title="Zoom avant"
-            aria-label="Zoom avant"
-          >
-            <i data-lucide="plus"></i>
-          </button>
-          <button
-            id="zoomOut"
-            class="tool-btn"
-            type="button"
-            title="Zoom arrière"
-            aria-label="Zoom arrière"
-          >
-            <i data-lucide="minus"></i>
-          </button>
-        </div>
+        <a class="secondary-cta" href="prediction.html">
+          <i data-lucide="brain-circuit" aria-hidden="true"></i>
+          <span>Lancer une prédiction</span>
+        </a>
       </div>
+    </section>
+  </main>
 
-      <div id="countryCard" class="map-country-card glass" aria-live="polite">
-        <div class="country-card-top">
-          <div id="countryCardName" class="country-name">Pays</div>
-          <div class="country-card-actions">
-            <span id="countryCardCluster" class="cluster-pill">Risque</span>
-            <button
-              id="closeCountryCard"
-              class="country-card-close"
-              type="button"
-              aria-label="Fermer"
-            >
-              <i data-lucide="x"></i>
-            </button>
-          </div>
-        </div>
-        <div id="countryCardMeta" class="country-meta">
-          Classification du risque de stunting.
-        </div>
-        <a
-          id="countryPredictionLink"
-          class="country-action"
-          href="prediction.html"
-          >Ouvrir la prédiction</a
-        >
-      </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts-maps@1.1.0/world.js"></script>
-    <script src="assets/js/config.js"></script>
-    <script src="assets/js/shared.js"></script>
-    <script src="assets/js/map.js"></script>
-  </body>
+  <script src="assets/js/index.js"></script>
+</body>
 </html>
