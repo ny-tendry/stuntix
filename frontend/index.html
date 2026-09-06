@@ -115,6 +115,15 @@
       </div>
     </section>
   </main>
+  <footer class="landing-footer">
+    <p>
+      &copy; <span id="year"></span> ny-tendry. Tous droits réservés.
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
   <script src="assets/js/index.js"></script>
 </body>
