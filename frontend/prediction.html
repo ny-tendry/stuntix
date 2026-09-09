@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body class="prediction-page prediction-v2-page section-page">
+    <div class="page-loader" role="status" aria-live="polite" aria-label="Chargement de la page">
+      <span class="micro-spinner page-loader-spinner" aria-hidden="true"></span>
+    </div>
     <div class="app-shell content-page">
       <div class="section-map-backdrop" aria-hidden="true">
         <div id="backgroundWorldMap"></div>
@@ -33,54 +36,25 @@
       <div class="sidebar-scrim"></div>
 
       <aside class="sidebar glass">
+        <a class="sidebar-home" href="index.html" title="Accueil" aria-label="Retour à la page d’accueil">
+          <img src="assets/img/favicon.png" alt="" aria-hidden="true" />
+        </a>
         <nav class="nav" aria-label="Navigation principale">
-          <a
-            class="nav-link"
-            href="carte.html"
-            title="Carte mondiale"
-            aria-label="Carte mondiale"
-            ><i data-lucide="earth"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Pays & régions"
-            aria-label="Pays & régions"
-            data-demo-link
-            ><i data-lucide="map-pinned"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Populations"
-            aria-label="Populations"
-            data-demo-link
-            ><i data-lucide="users-round"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Alertes & risques"
-            aria-label="Alertes & risques"
-            data-demo-link
-            ><i data-lucide="triangle-alert"></i
-          ></a>
-          <a
-            class="nav-link"
-            href="#"
-            title="Prévisions"
-            aria-label="Prévisions"
-            data-demo-link
-            ><i data-lucide="chart-spline"></i
-          ></a>
-          <a
-            class="nav-link active"
-            href="prediction.html"
-            title="Prédiction"
-            aria-label="Prédiction"
-            aria-current="page"
-            ><i data-lucide="brain-circuit"></i
-          ></a>
+          <a class="nav-link" href="carte.html" title="Carte mondiale" aria-label="Carte mondiale">
+            <i data-lucide="earth"></i>
+          </a>
+          <a class="nav-link" href="fiche-pays.html" title="Fiche pays" aria-label="Fiche pays">
+            <i data-lucide="map-pinned"></i>
+          </a>
+          <a class="nav-link" href="profils-pays.html" title="Profils pays" aria-label="Profils pays">
+            <i data-lucide="chart-no-axes-column-increasing"></i>
+          </a>
+          <a class="nav-link active" href="prediction.html" title="Prédiction" aria-label="Prédiction" aria-current="page">
+            <i data-lucide="brain-circuit"></i>
+          </a>
+          <a class="nav-link" href="documentation.html" title="Documentation" aria-label="Documentation">
+            <i data-lucide="book-open"></i>
+          </a>
         </nav>
       </aside>
 

@@ -1,4 +1,18 @@
 (() => {
+  const pageLoader = document.querySelector(".landing-page-loader");
+  const loaderStart = performance.now();
+  const hidePageLoader = () => {
+    if (!pageLoader || pageLoader.classList.contains("is-hidden")) return;
+    const wait = Math.max(0, 260 - (performance.now() - loaderStart));
+    window.setTimeout(() => {
+      pageLoader.classList.add("is-hidden");
+      window.setTimeout(() => pageLoader.remove(), 280);
+    }, wait);
+  };
+  if (document.readyState === "complete") hidePageLoader();
+  else window.addEventListener("load", hidePageLoader, { once: true });
+  window.setTimeout(hidePageLoader, 1800);
+
   if (typeof lucide !== "undefined") lucide.createIcons();
 
   const shell = document.querySelector(".landing-shell");

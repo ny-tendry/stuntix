@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Stuntix — Documentation</title>
+    <meta
+      name="description"
+      content="Documentation de Stuntix : présentation du projet et des principales sources internationales de données utilisées et considérées."
+    />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260909-11" />
+    <link rel="stylesheet" href="assets/css/documentation.css?v=20260909-11" />
+  </head>
+
+  <body class="documentation-page section-page">
+    <div class="page-loader" role="status" aria-live="polite" aria-label="Chargement de la page">
+      <span class="micro-spinner page-loader-spinner" aria-hidden="true"></span>
+    </div>
+
+    <div class="app-shell content-page documentation-shell">
+      <div class="section-map-backdrop" aria-hidden="true">
+        <div id="backgroundWorldMap"></div>
+      </div>
+      <div class="section-map-shade" aria-hidden="true"></div>
+      <div class="water-texture" aria-hidden="true"></div>
+
+      <button class="mobile-toggle glass" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="sidebar-scrim"></div>
+
+      <aside class="sidebar glass">
+        <a class="sidebar-home" href="index.html" title="Accueil" aria-label="Retour à la page d’accueil">
+          <img src="assets/img/favicon.png" alt="" aria-hidden="true" />
+        </a>
+        <nav class="nav" aria-label="Navigation principale">
+          <a class="nav-link" href="carte.html" title="Carte mondiale" aria-label="Carte mondiale"><i data-lucide="earth"></i></a>
+          <a class="nav-link" href="fiche-pays.html" title="Fiche pays" aria-label="Fiche pays"><i data-lucide="map-pinned"></i></a>
+          <a class="nav-link" href="profils-pays.html" title="Profils pays" aria-label="Profils pays"><i data-lucide="chart-no-axes-column-increasing"></i></a>
+          <a class="nav-link" href="prediction.html" title="Prédiction" aria-label="Prédiction"><i data-lucide="brain-circuit"></i></a>
+          <a class="nav-link active" href="documentation.html" title="Documentation" aria-label="Documentation" aria-current="page"><i data-lucide="book-open"></i></a>
+        </nav>
+      </aside>
+
+      <main class="content-frame glass documentation-frame">
+        <section class="documentation-stage" aria-label="Présentation de Stuntix">
+          <div class="documentation-fade documentation-fade-top" aria-hidden="true"></div>
+          <div class="documentation-fade documentation-fade-bottom" aria-hidden="true"></div>
+
+          <div class="documentation-viewport" id="documentationViewport" tabindex="0">
+            <article class="documentation-story" id="documentationStory">
+              <section class="story-section story-intro">
+                <blockquote class="story-quote">
+                  <p>« Ny fahavaloko dia ny mosary. »</p>
+                  <cite>Andrianampoinimerina</cite>
+                </blockquote>
+                <span class="story-kicker">À propos</span>
+                <h2>Une plateforme d’aide à la prise de décision face au risque de retard de croissance chez les enfants de 0 à 5 ans.</h2>
+                <p>
+                  Stuntix rassemble des informations internationales sur le <em>stunting</em> dans une interface unique afin d’offrir une lecture synthétique de la situation de chaque pays et des principaux facteurs qui l’accompagnent.
+                </p>
+                <p>
+                  La plateforme est conçue comme un outil d’aide à la prise de décision pour les ONG, les institutions publiques, les chercheurs et les décideurs. Elle facilite l’identification des situations prioritaires, la comparaison des profils de risque et l’exploration de scénarios utiles à l’orientation des actions de suivi et de prévention.
+                </p>
+              </section>
+
+              <div class="story-divider" aria-hidden="true"><span></span></div>
+
+              <section class="story-section platform-section">
+                <span class="story-kicker">Carte mondiale</span>
+                <h2>Explorer la répartition des profils de risque à travers le monde.</h2>
+                <p>
+                  La carte constitue le principal espace d’exploration de Stuntix. Elle permet de parcourir les pays, de repérer rapidement les différents niveaux de risque et d’accéder à une lecture géographique claire de la situation mondiale.
+                </p>
+              </section>
+
+              <section class="story-section platform-section">
+                <span class="story-kicker">Fiche pays</span>
+                <h2>Un espace en cours de préparation.</h2>
+                <p>
+                  La page Fiche pays est actuellement en cours de développement. Elle sera bientôt disponible afin d’offrir une lecture plus claire, plus synthétique et mieux connectée aux données de chaque pays.
+                </p>
+              </section>
+
+              <section class="story-section platform-section">
+                <span class="story-kicker">Profils pays</span>
+                <h2>Une section prochainement disponible.</h2>
+                <p>
+                  La page Profils pays est encore en préparation. Elle sera ajoutée prochainement pour présenter de manière simple et lisible les grands profils de risque observés dans la plateforme.
+                </p>
+              </section>
+
+              <section class="story-section platform-section">
+                <span class="story-kicker">Prédiction</span>
+                <h2>Explorer des scénarios et comprendre les facteurs associés à une estimation.</h2>
+                <p>
+                  La page de prédiction permet de tester un scénario à partir des indicateurs disponibles et d’obtenir une estimation accompagnée d’éléments d’explication. Les résultats sont présentés comme une aide à l’analyse et doivent toujours être interprétés avec prudence et replacés dans leur contexte.
+                </p>
+              </section>
+
+              <section class="story-section platform-section">
+                <span class="story-kicker">Documentation</span>
+                <h2>Présenter la vision du projet et l’origine des informations utilisées.</h2>
+                <p>
+                  Cette page rassemble les éléments essentiels pour comprendre la finalité de Stuntix, le rôle de ses différents espaces et les principales références de données sur lesquelles s’appuie la plateforme.
+                </p>
+              </section>
+
+              <section class="story-section source-section">
+                <span class="story-kicker">Sources de données</span>
+                <h2>Des références internationales complémentaires.</h2>
+                <p class="sources-intro">
+                  Le projet s’appuie principalement sur des données publiques internationales et tient également compte de sources complémentaires utiles pour enrichir ou confronter l’analyse selon la disponibilité des indicateurs.
+                </p>
+
+                <div class="source-logos" aria-label="Organisations et programmes de référence">
+                  <div class="source-logo-item">
+                    <div class="source-logo-wrap">
+                      <span class="source-logo-fallback">UNICEF</span>
+                      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_of_UNICEF.svg" alt="Logo UNICEF" loading="lazy" />
+                    </div>
+                    <span>UNICEF / JME</span>
+                  </div>
+
+                  <div class="source-logo-item">
+                    <div class="source-logo-wrap">
+                      <span class="source-logo-fallback">WORLD BANK</span>
+                      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The_World_Bank_logo.svg" alt="Logo Banque mondiale" loading="lazy" />
+                    </div>
+                    <span>Banque mondiale</span>
+                  </div>
+
+                  <div class="source-logo-item">
+                    <div class="source-logo-wrap">
+                      <span class="source-logo-fallback">WHO</span>
+                      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/World_Health_Organization_Logo.svg" alt="Logo Organisation mondiale de la Santé" loading="lazy" />
+                    </div>
+                    <span>OMS / GHO</span>
+                  </div>
+
+                  <div class="source-logo-item source-logo-square">
+                    <div class="source-logo-wrap">
+                      <span class="source-logo-fallback">FAO</span>
+                      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/FAO_logo.svg" alt="Logo FAO" loading="lazy" />
+                    </div>
+                    <span>FAO / FAOSTAT</span>
+                  </div>
+
+                  <div class="source-logo-item source-logo-tall">
+                    <div class="source-logo-wrap">
+                      <span class="source-logo-fallback">UNDP</span>
+                      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/UNDP_logo.svg" alt="Logo Programme des Nations Unies pour le développement" loading="lazy" />
+                    </div>
+                    <span>PNUD / HDI</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="story-section perspectives-section">
+                <span class="story-kicker">Perspectives</span>
+                <h2>Faire évoluer Stuntix vers une lecture toujours plus utile et plus complète.</h2>
+                <p>
+                  Les prochaines évolutions pourront enrichir la couverture des données, améliorer la comparaison entre pays et renforcer la lecture des tendances dans le temps. L’objectif est également d’intégrer progressivement de nouvelles sources fiables lorsque leur disponibilité et leur comparabilité le permettent.
+                </p>
+                <p>
+                  Stuntix pourra ainsi évoluer comme un outil de suivi et d’exploration capable d’accompagner des analyses plus fines, tout en conservant une interface simple, transparente et accessible.
+                </p>
+              </section>
+
+              <footer class="documentation-ending documentation-copyright">
+                <p>&copy; <span id="documentationYear"></span> ny-tendry. Tous droits réservés.</p>
+              </footer>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-maps@1.1.0/world.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/background-map.js?v=20260909-7"></script>
+    <script src="assets/js/shared.js?v=20260909-7"></script>
+    <script src="assets/js/documentation.js?v=20260909-8"></script>
+    <script>
+      document.getElementById('documentationYear').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

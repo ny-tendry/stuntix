@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Stuntix — Profils pays</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/profils-pays.css" />
+  </head>
+  <body class="profiles-page section-page coming-page">
+    <div class="page-loader" role="status" aria-live="polite" aria-label="Chargement de la page">
+      <span class="micro-spinner page-loader-spinner" aria-hidden="true"></span>
+    </div>
+
+    <div class="app-shell content-page coming-shell">
+      <div class="section-map-backdrop" aria-hidden="true"><div id="backgroundWorldMap"></div></div>
+      <div class="section-map-shade" aria-hidden="true"></div>
+      <div class="water-texture" aria-hidden="true"></div>
+
+      <button class="mobile-toggle glass" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="sidebar-scrim"></div>
+
+      <aside class="sidebar glass">
+        <a class="sidebar-home" href="index.html" title="Accueil" aria-label="Retour à la page d’accueil">
+          <img src="assets/img/favicon.png" alt="" aria-hidden="true" />
+        </a>
+        <nav class="nav" aria-label="Navigation principale">
+          <a class="nav-link" href="carte.html" title="Carte mondiale" aria-label="Carte mondiale"><i data-lucide="earth"></i></a>
+          <a class="nav-link" href="fiche-pays.html" title="Fiche pays" aria-label="Fiche pays"><i data-lucide="map-pinned"></i></a>
+          <a class="nav-link active" href="profils-pays.html" title="Profils pays" aria-label="Profils pays" aria-current="page"><i data-lucide="chart-no-axes-column-increasing"></i></a>
+          <a class="nav-link" href="prediction.html" title="Prédiction" aria-label="Prédiction"><i data-lucide="brain-circuit"></i></a>
+          <a class="nav-link" href="documentation.html" title="Documentation" aria-label="Documentation"><i data-lucide="book-open"></i></a>
+        </nav>
+      </aside>
+
+      <main class="content-frame glass coming-frame">
+        <section class="coming-center" aria-label="Page en cours de préparation">
+          <div class="coming-kicker">Profils pays</div>
+          <div class="coming-hammer-wrap" aria-hidden="true">
+            <span class="coming-hammer"><i data-lucide="hammer"></i></span>
+            <span class="coming-anvil"></span>
+            <span class="coming-impact"></span>
+          </div>
+          <p class="coming-subline">
+            La section est en cours de mise en place et sera prochainement disponible dans Stuntix.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-maps@1.1.0/world.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/background-map.js?v=20260909-9"></script>
+    <script src="assets/js/shared.js?v=20260909-9"></script>
+  </body>
+</html>

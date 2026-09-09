@@ -293,6 +293,109 @@
     return allData.filter((country) => activeClusters.has(country.cluster));
   }
 
+  // Mise en page responsive de la carte.
+  // Le canvas ECharts couvre toujours tout l'écran. Sur téléphone, la carte
+  // géographique garde un rapport constant et est simplement centrée/zoomée.
+  // On évite volontairement top/right/bottom/left sur mobile : ces quatre
+  // contraintes peuvent étirer une map GeoJSON dans un viewport portrait.
+  const WORLD_ASPECT_SCALE = 0.75;
+
+  function isPhoneMap() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
+
+  function viewportSize() {
+    const viewport = window.visualViewport;
+    return {
+      width: Math.max(1, Math.round(viewport?.width || el.clientWidth || window.innerWidth || 1)),
+      height: Math.max(1, Math.round(viewport?.height || el.clientHeight || window.innerHeight || 1)),
+    };
+  }
+
+  // Taille de la carte dans le canvas plein écran. Sur un téléphone portrait,
+  // elle est volontairement un peu plus large que l'écran : cela donne un
+  // cadrage central naturel, sans écraser verticalement les continents.
+  function phoneLayoutSize() {
+    const { width, height } = viewportSize();
+    return Math.round(
+      Math.min(760, Math.max(width * 1.28, height * 0.70)),
+    );
+  }
+
+  function defaultMapView() {
+    if (isPhoneMap()) {
+      return {
+        zoom: 1,
+        center: [8, 18],
+        aspectScale: WORLD_ASPECT_SCALE,
+        layoutCenter: ["50%", "50%"],
+        layoutSize: phoneLayoutSize(),
+        top: null,
+        right: null,
+        bottom: null,
+        left: null,
+      };
+    }
+
+    return {
+      zoom: 0.9,
+      center: [8, 18],
+      aspectScale: WORLD_ASPECT_SCALE,
+      layoutCenter: null,
+      layoutSize: null,
+      top: "4%",
+      left: "9%",
+      right: "4%",
+      bottom: "5%",
+    };
+  }
+
+  function responsiveMapLayout() {
+    if (isPhoneMap()) {
+      return {
+        aspectScale: WORLD_ASPECT_SCALE,
+        layoutCenter: ["50%", "50%"],
+        layoutSize: phoneLayoutSize(),
+        top: null,
+        right: null,
+        bottom: null,
+        left: null,
+      };
+    }
+
+    return {
+      aspectScale: WORLD_ASPECT_SCALE,
+      layoutCenter: null,
+      layoutSize: null,
+      top: "4%",
+      left: "9%",
+      right: "4%",
+      bottom: "5%",
+    };
+  }
+
+  function resizeMapCanvas() {
+    // Laisser ECharts recalculer sa surface à partir du conteneur réellement
+    // visible évite qu'un ancien 100vh soit étiré vers le 100dvh sur mobile.
+    chart.resize();
+
+    if (isPhoneMap()) {
+      chart.setOption({
+        series: [
+          {
+            aspectScale: WORLD_ASPECT_SCALE,
+            layoutCenter: ["50%", "50%"],
+            layoutSize: phoneLayoutSize(),
+            top: null,
+            right: null,
+            bottom: null,
+            left: null,
+          },
+        ],
+      });
+    }
+  }
+
   //rendu echart
   function initializeMap() {
     chart.setOption(
@@ -347,12 +450,7 @@
             type: "map",
             map: "world",
             roam: true,
-            zoom: 0.9,
-            center: [8, 18],
-            top: "4%",
-            left: "9%",
-            right: "4%",
-            bottom: "5%",
+            ...defaultMapView(),
             data: getVisibleMapData(),
             selectedMode: false,
 
@@ -393,7 +491,7 @@
   const cardName = document.getElementById("countryCardName");
   const cardCluster = document.getElementById("countryCardCluster");
   const cardMeta = document.getElementById("countryCardMeta");
-  const cardLink = document.getElementById("countryPredictionLink");
+  const cardLink = document.getElementById("countryProfileLink");
 
   function showCountry(country) {
     if (!country || !card) return;
@@ -414,7 +512,7 @@
     }
 
     if (cardLink) {
-      cardLink.href = `prediction.html?country=${encodeURIComponent(country.id_pays)}`;
+      cardLink.href = `fiche-pays.html?country=${encodeURIComponent(country.id_pays)}`;
     }
 
     card.classList.add("show");
@@ -635,13 +733,12 @@
     });
   });
 
-  //recentrege
+  //recentrage
   document.getElementById("resetMap")?.addEventListener("click", () => {
     chart.setOption({
       series: [
         {
-          zoom: 0.9,
-          center: [8, 18],
+          ...defaultMapView(),
         },
       ],
     });
@@ -725,13 +822,41 @@
   });
 
   //responsive
-  window.addEventListener(
-    "resize",
-    () => {
+  let phoneLayoutState = isPhoneMap();
+  let resizeFrame = 0;
+
+  function scheduleMapResize() {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      const nextPhoneLayoutState = isPhoneMap();
+      const breakpointChanged = nextPhoneLayoutState !== phoneLayoutState;
+      phoneLayoutState = nextPhoneLayoutState;
+
       chart.resize();
-    },
+
+      // En mode téléphone on recalcule uniquement la taille de mise en page.
+      // Le zoom et le centre choisis par l'utilisateur restent intacts.
+      if (nextPhoneLayoutState) {
+        chart.setOption({ series: [{ ...responsiveMapLayout() }] });
+      } else if (breakpointChanged) {
+        chart.setOption({ series: [{ ...responsiveMapLayout() }] });
+      }
+    });
+  }
+
+  window.addEventListener("resize", scheduleMapResize, { passive: true });
+  window.visualViewport?.addEventListener("resize", scheduleMapResize, { passive: true });
+
+  window.addEventListener(
+    "orientationchange",
+    () => window.setTimeout(scheduleMapResize, 180),
     { passive: true },
   );
+
+  if (typeof ResizeObserver !== "undefined") {
+    const mapResizeObserver = new ResizeObserver(scheduleMapResize);
+    mapResizeObserver.observe(el);
+  }
 
   //html
   function escapeHtml(value) {

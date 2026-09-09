@@ -1,0 +1,225 @@
+.coming-page {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.coming-shell {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.coming-page .section-map-backdrop {
+  opacity: 0.54;
+  filter: blur(8px) saturate(92%) brightness(0.72);
+  transform: scale(1.03);
+}
+
+.coming-page .section-map-shade {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(11, 42, 74, 0.10), rgba(2, 14, 29, 0.48) 72%),
+    linear-gradient(135deg, rgba(2, 18, 37, 0.26), rgba(2, 15, 30, 0.58));
+}
+
+.coming-frame {
+  height: calc(100dvh - 28px);
+  min-height: 0;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.coming-center {
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0;
+}
+
+.coming-kicker {
+  margin-bottom: 14px;
+  color: #74acf6;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.coming-hammer-wrap {
+  position: relative;
+  width: 92px;
+  height: 72px;
+  margin-bottom: 16px;
+}
+
+.coming-hammer {
+  position: absolute;
+  left: 26px;
+  top: 2px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: #cfe0f4;
+  transform-origin: 78% 84%;
+  animation: hammerTap 1.45s ease-in-out infinite;
+}
+
+.coming-hammer svg {
+  width: 28px;
+  height: 28px;
+}
+
+.coming-anvil {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 38px;
+  height: 7px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, rgba(111, 149, 193, 0.1), rgba(150, 190, 238, 0.88), rgba(111, 149, 193, 0.1));
+  box-shadow: 0 0 18px rgba(102, 165, 241, 0.25);
+}
+
+.coming-impact {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateX(-50%) scale(0.15);
+  background: radial-gradient(circle, rgba(133, 189, 255, 0.95), rgba(133, 189, 255, 0.16) 72%, transparent 74%);
+  opacity: 0;
+  animation: impactPulse 1.45s ease-in-out infinite;
+}
+
+.coming-center h1 {
+  margin: 0 0 12px;
+  color: #edf5ff;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.08;
+  font-weight: 560;
+  letter-spacing: -0.04em;
+}
+
+.coming-center p {
+  margin: 0;
+  max-width: 500px;
+  color: #a5b5c8;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.8;
+}
+
+.coming-subline {
+  margin-top: 8px !important;
+  color: #889bb2 !important;
+  font-size: 12px !important;
+}
+
+@keyframes hammerTap {
+  0%, 18%, 100% { transform: rotate(-42deg) translateY(0); }
+  7% { transform: rotate(4deg) translateY(12px); }
+  12% { transform: rotate(-28deg) translateY(2px); }
+  52%, 70% { transform: rotate(-42deg) translateY(0); }
+  59% { transform: rotate(3deg) translateY(12px); }
+  64% { transform: rotate(-24deg) translateY(2px); }
+}
+
+@keyframes impactPulse {
+  0%, 5%, 18%, 52%, 57%, 70%, 100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.15);
+  }
+  8%, 60% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  12%, 64% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.6);
+  }
+}
+
+@media (max-width: 900px) {
+  .coming-frame {
+    height: calc(100dvh - 22px);
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .coming-frame {
+    padding: 20px 16px 18px;
+  }
+
+  .coming-center {
+    width: min(420px, 100%);
+    margin: 0 auto;
+  }
+
+  .coming-center h1 {
+    font-size: clamp(28px, 9vw, 38px);
+  }
+
+  .coming-center p {
+    max-width: 340px;
+    font-size: 13px;
+    line-height: 1.72;
+  }
+}
+
+@media (max-width: 520px) {
+  .coming-frame {
+    height: calc(100dvh - 18px);
+    padding: 18px 14px 16px;
+  }
+
+  .coming-center {
+    width: min(320px, 100%);
+  }
+
+  .coming-hammer-wrap {
+    width: 84px;
+    height: 68px;
+    margin-bottom: 14px;
+  }
+
+  .coming-kicker {
+    margin-bottom: 12px;
+    font-size: 9px;
+  }
+
+  .coming-center h1 {
+    margin-bottom: 10px;
+  }
+
+  .coming-subline {
+    font-size: 11px !important;
+  }
+}
+
+
+.coming-message {
+  margin: 0;
+  max-width: 500px;
+  color: #a5b5c8;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .coming-message {
+    max-width: 340px;
+    font-size: 13px;
+    line-height: 1.72;
+  }
+}

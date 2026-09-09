@@ -99,6 +99,7 @@
             left: "6%",
             right: "3%",
             bottom: "4%",
+            aspectScale: 0.75,
             data,
             selectedMode: false,
             itemStyle: {
@@ -148,5 +149,13 @@
       ),
     );
 
-  window.addEventListener("resize", () => chart.resize(), { passive: true });
+  const resizeBackgroundMap = () => chart.resize();
+  window.addEventListener("resize", resizeBackgroundMap, { passive: true });
+  window.addEventListener("orientationchange", () => {
+    window.setTimeout(resizeBackgroundMap, 180);
+  }, { passive: true });
+  if ("ResizeObserver" in window) {
+    const observer = new ResizeObserver(resizeBackgroundMap);
+    observer.observe(el);
+  }
 })();

@@ -1,4 +1,21 @@
 (function () {
+
+  // Petit chargement de page : visible au premier rendu puis retiré en douceur.
+  const pageLoader = document.querySelector(".page-loader");
+  const loaderStartedAt = performance.now();
+  function hidePageLoader() {
+    if (!pageLoader || pageLoader.classList.contains("is-hidden")) return;
+    const minimumVisibleMs = 260;
+    const elapsed = performance.now() - loaderStartedAt;
+    const wait = Math.max(0, minimumVisibleMs - elapsed);
+    window.setTimeout(() => {
+      pageLoader.classList.add("is-hidden");
+      window.setTimeout(() => pageLoader.remove(), 280);
+    }, wait);
+  }
+  if (document.readyState === "complete") hidePageLoader();
+  else window.addEventListener("load", hidePageLoader, { once: true });
+  window.setTimeout(hidePageLoader, 1800);
   const sidebar = document.querySelector(".sidebar");
   const scrim = document.querySelector(".sidebar-scrim");
   const toggle = document.querySelector(".mobile-toggle");
